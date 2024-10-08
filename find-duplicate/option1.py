@@ -10,5 +10,17 @@ from typing import List
 # `input` elements are integers in the domain [1, N]
 # `input` contains all integers in the domain [1, N] at least once
 # `findDuplicate` returns an `int`: the duplicate integer
-def findDuplicate(input: List[int]) -> int:
-    return 0
+def findDuplicate1(input: List[int]) -> int:
+    input.sort()
+    for i in range(len(input)-1):
+        if input[i] == input[i+1]:
+            return input[i]
+    raise Exception("No duplicate found")
+
+def findDuplicate2(input: List[int]) -> int:
+    seen = set()
+    for item in input:
+        if item in seen:
+            return item
+        seen.add(item)
+    raise Exception("No duplicate found")
